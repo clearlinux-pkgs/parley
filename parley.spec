@@ -5,35 +5,38 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : parley
-Version  : 18.08.0
-Release  : 2
-URL      : https://download.kde.org/stable/applications/18.08.0/src/parley-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/parley-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/parley-18.08.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 18.12.2
+Release  : 3
+URL      : https://download.kde.org/stable/applications/18.12.2/src/parley-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/parley-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/parley-18.12.2.tar.xz.sig
+Summary  : Vocabulary Trainer
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 ISC MIT
-Requires: parley-bin
-Requires: parley-data
-Requires: parley-license
-Requires: parley-locales
+Requires: parley-bin = %{version}-%{release}
+Requires: parley-data = %{version}-%{release}
+Requires: parley-license = %{version}-%{release}
+Requires: parley-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : kross-dev
 BuildRequires : libkeduvocdocument-dev
 BuildRequires : libxml2-dev
 BuildRequires : libxslt-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 BuildRequires : qtwebengine-dev
 
 %description
-All files in this directory are copied from KDE/kdegames/libkdegames. Please avoid modifying the code in here and try go get changes back into kdegames.
+# Parley
+Parley is a vocabulary trainer.
+## Introduction
+arley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.
 
 %package bin
 Summary: bin components for the parley package.
 Group: Binaries
-Requires: parley-data
-Requires: parley-license
+Requires: parley-data = %{version}-%{release}
+Requires: parley-license = %{version}-%{release}
 
 %description bin
 bin components for the parley package.
@@ -72,29 +75,29 @@ locales components for the parley package.
 
 
 %prep
-%setup -q -n parley-18.08.0
+%setup -q -n parley-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535435737
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549945400
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535435737
+export SOURCE_DATE_EPOCH=1549945400
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/parley
-cp COPYING %{buildroot}/usr/share/doc/parley/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/doc/parley/COPYING.DOC
-cp plugins/wiktionary/mwclient/LICENSE.md %{buildroot}/usr/share/doc/parley/plugins_wiktionary_mwclient_LICENSE.md
-cp plugins/wiktionary/mwclient/requests_oauthlib/LICENSE %{buildroot}/usr/share/doc/parley/plugins_wiktionary_mwclient_requests_oauthlib_LICENSE
-cp plugins/wiktionary/mwclient/six.LICENSE %{buildroot}/usr/share/doc/parley/plugins_wiktionary_mwclient_six.LICENSE
+mkdir -p %{buildroot}/usr/share/package-licenses/parley
+cp COPYING %{buildroot}/usr/share/package-licenses/parley/COPYING
+cp COPYING.DOC %{buildroot}/usr/share/package-licenses/parley/COPYING.DOC
+cp plugins/wiktionary/mwclient/LICENSE.md %{buildroot}/usr/share/package-licenses/parley/plugins_wiktionary_mwclient_LICENSE.md
+cp plugins/wiktionary/mwclient/requests_oauthlib/LICENSE %{buildroot}/usr/share/package-licenses/parley/plugins_wiktionary_mwclient_requests_oauthlib_LICENSE
+cp plugins/wiktionary/mwclient/six.LICENSE %{buildroot}/usr/share/package-licenses/parley/plugins_wiktionary_mwclient_six.LICENSE
 pushd clr-build
 %make_install
 popd
@@ -415,12 +418,12 @@ popd
 /usr/share/doc/HTML/uk/parley/index.docbook
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/parley/COPYING
-/usr/share/doc/parley/COPYING.DOC
-/usr/share/doc/parley/plugins_wiktionary_mwclient_LICENSE.md
-/usr/share/doc/parley/plugins_wiktionary_mwclient_requests_oauthlib_LICENSE
-/usr/share/doc/parley/plugins_wiktionary_mwclient_six.LICENSE
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/parley/COPYING
+/usr/share/package-licenses/parley/COPYING.DOC
+/usr/share/package-licenses/parley/plugins_wiktionary_mwclient_LICENSE.md
+/usr/share/package-licenses/parley/plugins_wiktionary_mwclient_requests_oauthlib_LICENSE
+/usr/share/package-licenses/parley/plugins_wiktionary_mwclient_six.LICENSE
 
 %files locales -f parley.lang
 %defattr(-,root,root,-)
