@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : parley
-Version  : 18.12.2
-Release  : 3
-URL      : https://download.kde.org/stable/applications/18.12.2/src/parley-18.12.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.2/src/parley-18.12.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.2/src/parley-18.12.2.tar.xz.sig
-Summary  : Vocabulary Trainer
+Version  : 18.12.3
+Release  : 4
+URL      : https://download.kde.org/stable/applications/18.12.3/src/parley-18.12.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.3/src/parley-18.12.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.3/src/parley-18.12.3.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 ISC MIT
 Requires: parley-bin = %{version}-%{release}
@@ -27,10 +27,7 @@ BuildRequires : qtbase-dev mesa-dev
 BuildRequires : qtwebengine-dev
 
 %description
-# Parley
-Parley is a vocabulary trainer.
-## Introduction
-arley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.
+All files in this directory are copied from KDE/kdegames/libkdegames. Please avoid modifying the code in here and try go get changes back into kdegames.
 
 %package bin
 Summary: bin components for the parley package.
@@ -75,22 +72,23 @@ locales components for the parley package.
 
 
 %prep
-%setup -q -n parley-18.12.2
+%setup -q -n parley-18.12.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549945400
+export SOURCE_DATE_EPOCH=1552013579
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549945400
+export SOURCE_DATE_EPOCH=1552013579
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/parley
 cp COPYING %{buildroot}/usr/share/package-licenses/parley/COPYING
