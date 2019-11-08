@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : parley
-Version  : 19.08.2
-Release  : 13
-URL      : https://download.kde.org/stable/applications/19.08.2/src/parley-19.08.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.2/src/parley-19.08.2.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.2/src/parley-19.08.2.tar.xz.sig
+Version  : 19.08.3
+Release  : 14
+URL      : https://download.kde.org/stable/applications/19.08.3/src/parley-19.08.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/19.08.3/src/parley-19.08.3.tar.xz
+Source1 : https://download.kde.org/stable/applications/19.08.3/src/parley-19.08.3.tar.xz.sig
 Summary  : Vocabulary Trainer
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 ISC MIT
@@ -75,14 +75,14 @@ locales components for the parley package.
 
 
 %prep
-%setup -q -n parley-19.08.2
+%setup -q -n parley-19.08.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1570781033
+export SOURCE_DATE_EPOCH=1573195474
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -99,14 +99,14 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1570781033
+export SOURCE_DATE_EPOCH=1573195474
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/parley
-cp COPYING %{buildroot}/usr/share/package-licenses/parley/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/package-licenses/parley/COPYING.DOC
-cp plugins/wiktionary/mwclient/LICENSE.md %{buildroot}/usr/share/package-licenses/parley/plugins_wiktionary_mwclient_LICENSE.md
-cp plugins/wiktionary/mwclient/requests_oauthlib/LICENSE %{buildroot}/usr/share/package-licenses/parley/plugins_wiktionary_mwclient_requests_oauthlib_LICENSE
-cp plugins/wiktionary/mwclient/six.LICENSE %{buildroot}/usr/share/package-licenses/parley/plugins_wiktionary_mwclient_six.LICENSE
+cp %{_builddir}/parley-19.08.3/COPYING %{buildroot}/usr/share/package-licenses/parley/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+cp %{_builddir}/parley-19.08.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/parley/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/parley-19.08.3/plugins/wiktionary/mwclient/LICENSE.md %{buildroot}/usr/share/package-licenses/parley/e4388e326ad32baa550534d43f340cf950d8a056
+cp %{_builddir}/parley-19.08.3/plugins/wiktionary/mwclient/requests_oauthlib/LICENSE %{buildroot}/usr/share/package-licenses/parley/44d0ccfd43c5941abf44e8e5dba5e198a1b4badd
+cp %{_builddir}/parley-19.08.3/plugins/wiktionary/mwclient/six.LICENSE %{buildroot}/usr/share/package-licenses/parley/f226af67862c0c7a0e921e24672a3a1375691e3e
 pushd clr-build
 %make_install
 popd
@@ -428,11 +428,11 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/parley/COPYING
-/usr/share/package-licenses/parley/COPYING.DOC
-/usr/share/package-licenses/parley/plugins_wiktionary_mwclient_LICENSE.md
-/usr/share/package-licenses/parley/plugins_wiktionary_mwclient_requests_oauthlib_LICENSE
-/usr/share/package-licenses/parley/plugins_wiktionary_mwclient_six.LICENSE
+/usr/share/package-licenses/parley/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+/usr/share/package-licenses/parley/1bd373e4851a93027ba70064bd7dbdc6827147e1
+/usr/share/package-licenses/parley/44d0ccfd43c5941abf44e8e5dba5e198a1b4badd
+/usr/share/package-licenses/parley/e4388e326ad32baa550534d43f340cf950d8a056
+/usr/share/package-licenses/parley/f226af67862c0c7a0e921e24672a3a1375691e3e
 
 %files locales -f parley.lang
 %defattr(-,root,root,-)
