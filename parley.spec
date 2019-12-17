@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : parley
-Version  : 19.08.3
-Release  : 14
-URL      : https://download.kde.org/stable/applications/19.08.3/src/parley-19.08.3.tar.xz
-Source0  : https://download.kde.org/stable/applications/19.08.3/src/parley-19.08.3.tar.xz
-Source1 : https://download.kde.org/stable/applications/19.08.3/src/parley-19.08.3.tar.xz.sig
+Version  : 19.12.0
+Release  : 15
+URL      : https://download.kde.org/stable/release-service/19.12.0/src/parley-19.12.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/19.12.0/src/parley-19.12.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/19.12.0/src/parley-19.12.0.tar.xz.sig
 Summary  : Vocabulary Trainer
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 ISC MIT
@@ -30,7 +30,7 @@ BuildRequires : qtwebengine-dev
 # Parley
 Parley is a vocabulary trainer.
 ## Introduction
-arley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.
+Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.
 
 %package bin
 Summary: bin components for the parley package.
@@ -75,14 +75,15 @@ locales components for the parley package.
 
 
 %prep
-%setup -q -n parley-19.08.3
+%setup -q -n parley-19.12.0
+cd %{_builddir}/parley-19.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1573195474
+export SOURCE_DATE_EPOCH=1576570619
 mkdir -p clr-build
 pushd clr-build
 # -Werror is for werrorists
@@ -99,14 +100,14 @@ make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1573195474
+export SOURCE_DATE_EPOCH=1576570619
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/parley
-cp %{_builddir}/parley-19.08.3/COPYING %{buildroot}/usr/share/package-licenses/parley/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
-cp %{_builddir}/parley-19.08.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/parley/1bd373e4851a93027ba70064bd7dbdc6827147e1
-cp %{_builddir}/parley-19.08.3/plugins/wiktionary/mwclient/LICENSE.md %{buildroot}/usr/share/package-licenses/parley/e4388e326ad32baa550534d43f340cf950d8a056
-cp %{_builddir}/parley-19.08.3/plugins/wiktionary/mwclient/requests_oauthlib/LICENSE %{buildroot}/usr/share/package-licenses/parley/44d0ccfd43c5941abf44e8e5dba5e198a1b4badd
-cp %{_builddir}/parley-19.08.3/plugins/wiktionary/mwclient/six.LICENSE %{buildroot}/usr/share/package-licenses/parley/f226af67862c0c7a0e921e24672a3a1375691e3e
+cp %{_builddir}/parley-19.12.0/COPYING %{buildroot}/usr/share/package-licenses/parley/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+cp %{_builddir}/parley-19.12.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/parley/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/parley-19.12.0/plugins/wiktionary/mwclient/LICENSE.md %{buildroot}/usr/share/package-licenses/parley/e4388e326ad32baa550534d43f340cf950d8a056
+cp %{_builddir}/parley-19.12.0/plugins/wiktionary/mwclient/requests_oauthlib/LICENSE %{buildroot}/usr/share/package-licenses/parley/44d0ccfd43c5941abf44e8e5dba5e198a1b4badd
+cp %{_builddir}/parley-19.12.0/plugins/wiktionary/mwclient/six.LICENSE %{buildroot}/usr/share/package-licenses/parley/f226af67862c0c7a0e921e24672a3a1375691e3e
 pushd clr-build
 %make_install
 popd
