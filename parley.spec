@@ -5,12 +5,12 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : parley
-Version  : 20.04.0
-Release  : 20
-URL      : https://download.kde.org/stable/release-service/20.04.0/src/parley-20.04.0.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.04.0/src/parley-20.04.0.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.04.0/src/parley-20.04.0.tar.xz.sig
-Summary  : Vocabulary Trainer
+Version  : 20.04.1
+Release  : 21
+URL      : https://download.kde.org/stable/release-service/20.04.1/src/parley-20.04.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.04.1/src/parley-20.04.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.04.1/src/parley-20.04.1.tar.xz.sig
+Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 ISC MIT
 Requires: parley-bin = %{version}-%{release}
@@ -19,6 +19,7 @@ Requires: parley-license = %{version}-%{release}
 Requires: parley-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
+BuildRequires : extra-cmake-modules-data
 BuildRequires : kross-dev
 BuildRequires : libkeduvocdocument-dev
 BuildRequires : libxml2-dev
@@ -27,10 +28,7 @@ BuildRequires : qtbase-dev mesa-dev
 BuildRequires : qtwebengine-dev
 
 %description
-# Parley
-Parley is a vocabulary trainer.
-## Introduction
-Parley is a vocabulary trainer. It helps you to memorize your vocabulary, for example when you are trying to learn a foreign language. It supports many language specific features, but can be used for other learning tasks as well. It uses the spaced repetition learning method, which makes learning optimal. Vocabulary collections can be downloaded by "Get Hot New Stuff" or created with the built-in editor.
+All files in this directory are copied from KDE/kdegames/libkdegames. Please avoid modifying the code in here and try go get changes back into kdegames.
 
 %package bin
 Summary: bin components for the parley package.
@@ -75,39 +73,38 @@ locales components for the parley package.
 
 
 %prep
-%setup -q -n parley-20.04.0
-cd %{_builddir}/parley-20.04.0
+%setup -q -n parley-20.04.1
+cd %{_builddir}/parley-20.04.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1587676211
+export SOURCE_DATE_EPOCH=1589855652
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1587676211
+export SOURCE_DATE_EPOCH=1589855652
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/parley
-cp %{_builddir}/parley-20.04.0/COPYING %{buildroot}/usr/share/package-licenses/parley/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
-cp %{_builddir}/parley-20.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/parley/1bd373e4851a93027ba70064bd7dbdc6827147e1
-cp %{_builddir}/parley-20.04.0/plugins/wiktionary/mwclient/LICENSE.md %{buildroot}/usr/share/package-licenses/parley/e4388e326ad32baa550534d43f340cf950d8a056
-cp %{_builddir}/parley-20.04.0/plugins/wiktionary/mwclient/requests_oauthlib/LICENSE %{buildroot}/usr/share/package-licenses/parley/44d0ccfd43c5941abf44e8e5dba5e198a1b4badd
-cp %{_builddir}/parley-20.04.0/plugins/wiktionary/mwclient/six.LICENSE %{buildroot}/usr/share/package-licenses/parley/f226af67862c0c7a0e921e24672a3a1375691e3e
+cp %{_builddir}/parley-20.04.1/COPYING %{buildroot}/usr/share/package-licenses/parley/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+cp %{_builddir}/parley-20.04.1/COPYING.DOC %{buildroot}/usr/share/package-licenses/parley/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/parley-20.04.1/plugins/wiktionary/mwclient/LICENSE.md %{buildroot}/usr/share/package-licenses/parley/e4388e326ad32baa550534d43f340cf950d8a056
+cp %{_builddir}/parley-20.04.1/plugins/wiktionary/mwclient/requests_oauthlib/LICENSE %{buildroot}/usr/share/package-licenses/parley/44d0ccfd43c5941abf44e8e5dba5e198a1b4badd
+cp %{_builddir}/parley-20.04.1/plugins/wiktionary/mwclient/six.LICENSE %{buildroot}/usr/share/package-licenses/parley/f226af67862c0c7a0e921e24672a3a1375691e3e
 pushd clr-build
 %make_install
 popd
