@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : parley
-Version  : 20.08.3
-Release  : 26
-URL      : https://download.kde.org/stable/release-service/20.08.3/src/parley-20.08.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/20.08.3/src/parley-20.08.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/20.08.3/src/parley-20.08.3.tar.xz.sig
+Version  : 20.12.0
+Release  : 27
+URL      : https://download.kde.org/stable/release-service/20.12.0/src/parley-20.12.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/20.12.0/src/parley-20.12.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/20.12.0/src/parley-20.12.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 ISC MIT
@@ -73,15 +73,15 @@ locales components for the parley package.
 
 
 %prep
-%setup -q -n parley-20.08.3
-cd %{_builddir}/parley-20.08.3
+%setup -q -n parley-20.12.0
+cd %{_builddir}/parley-20.12.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604620060
+export SOURCE_DATE_EPOCH=1607731484
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -97,14 +97,14 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1604620060
+export SOURCE_DATE_EPOCH=1607731484
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/parley
-cp %{_builddir}/parley-20.08.3/COPYING %{buildroot}/usr/share/package-licenses/parley/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
-cp %{_builddir}/parley-20.08.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/parley/1bd373e4851a93027ba70064bd7dbdc6827147e1
-cp %{_builddir}/parley-20.08.3/plugins/wiktionary/mwclient/LICENSE.md %{buildroot}/usr/share/package-licenses/parley/e4388e326ad32baa550534d43f340cf950d8a056
-cp %{_builddir}/parley-20.08.3/plugins/wiktionary/mwclient/requests_oauthlib/LICENSE %{buildroot}/usr/share/package-licenses/parley/44d0ccfd43c5941abf44e8e5dba5e198a1b4badd
-cp %{_builddir}/parley-20.08.3/plugins/wiktionary/mwclient/six.LICENSE %{buildroot}/usr/share/package-licenses/parley/f226af67862c0c7a0e921e24672a3a1375691e3e
+cp %{_builddir}/parley-20.12.0/COPYING %{buildroot}/usr/share/package-licenses/parley/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
+cp %{_builddir}/parley-20.12.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/parley/1bd373e4851a93027ba70064bd7dbdc6827147e1
+cp %{_builddir}/parley-20.12.0/plugins/wiktionary/mwclient/LICENSE.md %{buildroot}/usr/share/package-licenses/parley/e4388e326ad32baa550534d43f340cf950d8a056
+cp %{_builddir}/parley-20.12.0/plugins/wiktionary/mwclient/requests_oauthlib/LICENSE %{buildroot}/usr/share/package-licenses/parley/44d0ccfd43c5941abf44e8e5dba5e198a1b4badd
+cp %{_builddir}/parley-20.12.0/plugins/wiktionary/mwclient/six.LICENSE %{buildroot}/usr/share/package-licenses/parley/f226af67862c0c7a0e921e24672a3a1375691e3e
 pushd clr-build
 %make_install
 popd
@@ -199,6 +199,8 @@ popd
 /usr/share/icons/oxygen/scalable/actions/remove-duplicates.svgz
 /usr/share/icons/oxygen/scalable/actions/set-language.svgz
 /usr/share/icons/oxygen/scalable/actions/specific-setup.svgz
+/usr/share/knsrcfiles/parley-themes.knsrc
+/usr/share/knsrcfiles/parley.knsrc
 /usr/share/kxmlgui5/parley/dashboardui.rc
 /usr/share/kxmlgui5/parley/editorui.rc
 /usr/share/kxmlgui5/parley/parleyui.rc
@@ -256,8 +258,6 @@ popd
 /usr/share/parley/tips
 /usr/share/parley/xslt/flashcards.xsl
 /usr/share/parley/xslt/table.xsl
-/usr/share/xdg/parley-themes.knsrc
-/usr/share/xdg/parley.knsrc
 
 %files doc
 %defattr(0644,root,root,0755)
