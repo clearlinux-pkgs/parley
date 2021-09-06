@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : parley
-Version  : 21.04.2
-Release  : 31
-URL      : https://download.kde.org/stable/release-service/21.04.2/src/parley-21.04.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.04.2/src/parley-21.04.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.04.2/src/parley-21.04.2.tar.xz.sig
+Version  : 21.08.1
+Release  : 32
+URL      : https://download.kde.org/stable/release-service/21.08.1/src/parley-21.08.1.tar.xz
+Source0  : https://download.kde.org/stable/release-service/21.08.1/src/parley-21.08.1.tar.xz
+Source1  : https://download.kde.org/stable/release-service/21.08.1/src/parley-21.08.1.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GFDL-1.2 GPL-2.0 ISC MIT
+License  : GFDL-1.2 GPL-2.0 GPL-3.0 ISC MIT
 Requires: parley-bin = %{version}-%{release}
 Requires: parley-data = %{version}-%{release}
 Requires: parley-license = %{version}-%{release}
@@ -73,38 +73,42 @@ locales components for the parley package.
 
 
 %prep
-%setup -q -n parley-21.04.2
-cd %{_builddir}/parley-21.04.2
+%setup -q -n parley-21.08.1
+cd %{_builddir}/parley-21.08.1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1623408895
+export SOURCE_DATE_EPOCH=1630962504
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
-export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=auto "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=auto "
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1623408895
+export SOURCE_DATE_EPOCH=1630962504
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/parley
-cp %{_builddir}/parley-21.04.2/COPYING %{buildroot}/usr/share/package-licenses/parley/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
-cp %{_builddir}/parley-21.04.2/COPYING.DOC %{buildroot}/usr/share/package-licenses/parley/1bd373e4851a93027ba70064bd7dbdc6827147e1
-cp %{_builddir}/parley-21.04.2/plugins/wiktionary/mwclient/LICENSE.md %{buildroot}/usr/share/package-licenses/parley/e4388e326ad32baa550534d43f340cf950d8a056
-cp %{_builddir}/parley-21.04.2/plugins/wiktionary/mwclient/requests_oauthlib/LICENSE %{buildroot}/usr/share/package-licenses/parley/44d0ccfd43c5941abf44e8e5dba5e198a1b4badd
-cp %{_builddir}/parley-21.04.2/plugins/wiktionary/mwclient/six.LICENSE %{buildroot}/usr/share/package-licenses/parley/f226af67862c0c7a0e921e24672a3a1375691e3e
+cp %{_builddir}/parley-21.08.1/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/parley/ee03d68f6be20b170e5ea5d114d6acafb3f2d1dc
+cp %{_builddir}/parley-21.08.1/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/parley/3e8971c6c5f16674958913a94a36b1ea7a00ac46
+cp %{_builddir}/parley-21.08.1/LICENSES/GPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/parley/2123756e0b1fc8243547235a33c0fcabfe3b9a51
+cp %{_builddir}/parley-21.08.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/parley/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/parley-21.08.1/LICENSES/LicenseRef-KDE-Accepted-GPL.txt %{buildroot}/usr/share/package-licenses/parley/7d9831e05094ce723947d729c2a46a09d6e90275
+cp %{_builddir}/parley-21.08.1/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/parley/81e12d0c07782abcf558af7aa19846e3e2606a70
+cp %{_builddir}/parley-21.08.1/plugins/wiktionary/mwclient/LICENSE.md %{buildroot}/usr/share/package-licenses/parley/e4388e326ad32baa550534d43f340cf950d8a056
+cp %{_builddir}/parley-21.08.1/plugins/wiktionary/mwclient/requests_oauthlib/LICENSE %{buildroot}/usr/share/package-licenses/parley/44d0ccfd43c5941abf44e8e5dba5e198a1b4badd
+cp %{_builddir}/parley-21.08.1/plugins/wiktionary/mwclient/six.LICENSE %{buildroot}/usr/share/package-licenses/parley/f226af67862c0c7a0e921e24672a3a1375691e3e
 pushd clr-build
 %make_install
 popd
@@ -426,10 +430,13 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/parley/06877624ea5c77efe3b7e39b0f909eda6e25a4ec
-/usr/share/package-licenses/parley/1bd373e4851a93027ba70064bd7dbdc6827147e1
+/usr/share/package-licenses/parley/2123756e0b1fc8243547235a33c0fcabfe3b9a51
+/usr/share/package-licenses/parley/3e8971c6c5f16674958913a94a36b1ea7a00ac46
 /usr/share/package-licenses/parley/44d0ccfd43c5941abf44e8e5dba5e198a1b4badd
+/usr/share/package-licenses/parley/7d9831e05094ce723947d729c2a46a09d6e90275
+/usr/share/package-licenses/parley/81e12d0c07782abcf558af7aa19846e3e2606a70
 /usr/share/package-licenses/parley/e4388e326ad32baa550534d43f340cf950d8a056
+/usr/share/package-licenses/parley/ee03d68f6be20b170e5ea5d114d6acafb3f2d1dc
 /usr/share/package-licenses/parley/f226af67862c0c7a0e921e24672a3a1375691e3e
 
 %files locales -f parley.lang
