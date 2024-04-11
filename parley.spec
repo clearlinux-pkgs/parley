@@ -8,11 +8,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : parley
-Version  : 24.02.1
-Release  : 68
-URL      : https://download.kde.org/stable/release-service/24.02.1/src/parley-24.02.1.tar.xz
-Source0  : https://download.kde.org/stable/release-service/24.02.1/src/parley-24.02.1.tar.xz
-Source1  : https://download.kde.org/stable/release-service/24.02.1/src/parley-24.02.1.tar.xz.sig
+Version  : 24.02.2
+Release  : 69
+URL      : https://download.kde.org/stable/release-service/24.02.2/src/parley-24.02.2.tar.xz
+Source0  : https://download.kde.org/stable/release-service/24.02.2/src/parley-24.02.2.tar.xz
+Source1  : https://download.kde.org/stable/release-service/24.02.2/src/parley-24.02.2.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0 GPL-3.0 MIT
@@ -78,15 +78,15 @@ locales components for the parley package.
 
 
 %prep
-%setup -q -n parley-24.02.1
-cd %{_builddir}/parley-24.02.1
+%setup -q -n parley-24.02.2
+cd %{_builddir}/parley-24.02.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1712607209
+export SOURCE_DATE_EPOCH=1712857536
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -147,7 +147,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1712607209
+export SOURCE_DATE_EPOCH=1712857536
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/parley
 cp %{_builddir}/parley-%{version}/LICENSES/GFDL-1.2-or-later.txt %{buildroot}/usr/share/package-licenses/parley/ee03d68f6be20b170e5ea5d114d6acafb3f2d1dc || :
