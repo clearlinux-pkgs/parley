@@ -1,5 +1,5 @@
 PKG_NAME := parley
-URL = https://download.kde.org/stable/release-service/24.12.3/src/parley-24.12.3.tar.xz
+URL = https://download.kde.org/stable/release-service/25.04.0/src/parley-25.04.0.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common
